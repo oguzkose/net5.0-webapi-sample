@@ -77,26 +77,23 @@
                 context.Books.AddRange(
                     new Book
                     {
-                        Id = 1,
                         Title = "Nutuk",
-                        GenreId = 1, //History
+                        GenreId = 1,
                         PageCount = 450,
                         PublishDate = new DateTime(1937, 05, 13)
                     },
                     new Book
                     {
-                        Id = 2,
                         Title = "Şimdinin Gücü",
-                        GenreId = 2, //philosophy
+                        GenreId = 2,
                         PageCount = 350,
                         PublishDate = new DateTime(2018, 12, 01)
 
                     },
                     new Book
                     {
-                        Id = 3,
                         Title = "Dune",
-                        GenreId = 3, //Fantastic
+                        GenreId = 3,
                         PageCount = 520,
                         PublishDate = new DateTime(1989, 02, 15)
                     }
