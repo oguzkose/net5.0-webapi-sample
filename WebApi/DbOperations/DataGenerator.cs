@@ -19,14 +19,14 @@ namespace WebApi.DBOperations
                 }
 
                 context.Books.AddRange(
-                    new Book
+                    new Book()
                     {
                         Title = "Nutuk",
                         GenreId = 1,
                         PageCount = 450,
                         PublishDate = new DateTime(1937, 05, 13)
                     },
-                    new Book
+                    new Book()
                     {
                         Title = "Şimdinin Gücü",
                         GenreId = 2,
@@ -34,7 +34,7 @@ namespace WebApi.DBOperations
                         PublishDate = new DateTime(2018, 12, 01)
 
                     },
-                    new Book
+                    new Book()
                     {
                         Title = "Dune",
                         GenreId = 3,
