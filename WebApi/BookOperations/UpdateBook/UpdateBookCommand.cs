@@ -20,7 +20,7 @@ namespace WebApi.BookOperations.UpdateBook
             if (book is null)
                 throw new InvalidOperationException("Güncellemek istediğiniz kitap bulunamadı");
 
-            book.Title = Model.Title != default && Model.Title != "string" ? Model.Title : book.Title;
+            book.Title = Model.Title != default ? Model.Title : book.Title;
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
             book.PageCount = Model.PageCount != default ? Model.PageCount : book.PageCount;
             book.PublishDate = Model.PublishDate != default ? Model.PublishDate : book.PublishDate;
