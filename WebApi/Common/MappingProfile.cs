@@ -11,34 +11,38 @@ namespace WebApi.Common
         {
             CreateMap<CreateBookModel, Book>();
 
-
+            #region CreateMap<Book, BookDetailViewModel>()
             CreateMap<Book, BookDetailViewModel>()
-                //Source'de ki integer GenreId' yi Destination'da ki string Genre' ye (GenreEnum) map'lemyen config. 
-                .ForMember(
-                    dest => dest.Genre,
-                    opt => opt
-                    .MapFrom(src => ((GenreEnum)src.GenreId)
-                    .ToString())
-                )
-                //Source' de ki DateTime PublishDate' i Destination' da ki string PublishDate' e map'leyen config.  
-                .ForMember(
-                    dest => dest.PublishDate,
-                    opt => opt
-                    .MapFrom(src => (src.PublishDate.ToString("dd/MM/yyy")))
-                );
+            //Source'de ki integer GenreId' yi Destination'da ki string Genre' ye (GenreEnum) map'lemyen config. 
+            .ForMember(
+                dest => dest.Genre,
+                opt => opt
+                .MapFrom(src => ((GenreEnum)src.GenreId)
+                .ToString())
+            )
+            //Source' de ki DateTime PublishDate' i Destination' da ki string PublishDate' e map'leyen config.  
+            .ForMember(
+                dest => dest.PublishDate,
+                opt => opt
+                .MapFrom(src => (src.PublishDate.ToString("dd/MM/yyy")))
+            );
+            #endregion
 
+            #region CreateMap<Book, BooksViewModel>()
             CreateMap<Book, BooksViewModel>()
-                .ForMember(
-                    dest => dest.Genre,
-                    opt => opt
-                    .MapFrom(src => ((GenreEnum)src.GenreId)
-                    .ToString())
-                )
-                .ForMember(
-                    dest => dest.PublishDate,
-                    opt => opt
-                    .MapFrom(src => (src.PublishDate.ToString("dd/MM/yyy")))
-                );
+            .ForMember(
+                dest => dest.Genre,
+                opt => opt
+                .MapFrom(src => ((GenreEnum)src.GenreId)
+                .ToString())
+            )
+            .ForMember(
+                dest => dest.PublishDate,
+                opt => opt
+                .MapFrom(src => (src.PublishDate.ToString("dd/MM/yyy")))
+            );
+            #endregion
+
         }
 
     }
