@@ -44,20 +44,14 @@ namespace WebApi.Controllers
         {
             BookDetailViewModel result;
 
-            try
-            {
-                GetByIdQuery query = new GetByIdQuery(_context, _mapper);
-                query.BookId = id;
+            GetByIdQuery query = new GetByIdQuery(_context, _mapper);
+            query.BookId = id;
 
-                GetByIdQueryValidator validator = new GetByIdQueryValidator();
-                validator.ValidateAndThrow(query);
+            GetByIdQueryValidator validator = new GetByIdQueryValidator();
+            validator.ValidateAndThrow(query);
 
-                result = query.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            result = query.Handle();
+
 
             return Ok(result);
         }
@@ -69,22 +63,16 @@ namespace WebApi.Controllers
         public IActionResult CreateBook([FromBody] CreateBookModel newBook)
         {
 
-            try
-            {
-                CreateBookCommand command = new CreateBookCommand(_context, _mapper);
-                command.Model = newBook;
+            CreateBookCommand command = new CreateBookCommand(_context, _mapper);
+            command.Model = newBook;
 
-                CreateBookCommandValidator validator = new CreateBookCommandValidator();
-                validator.ValidateAndThrow(command);
+            CreateBookCommandValidator validator = new CreateBookCommandValidator();
+            validator.ValidateAndThrow(command);
 
-                command.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            command.Handle();
 
-            return Ok("Kitap başarıyla eklendi !");
+
+            return Ok();
         }
         #endregion
 
@@ -94,24 +82,16 @@ namespace WebApi.Controllers
         public IActionResult UpdateBook(int id, [FromBody] UpdatedBookModel updatedBook)
         {
 
-            try
-            {
-                UpdateBookCommand command = new UpdateBookCommand(_context);
-                command.Model = updatedBook;
-                command.BookId = id;
+            UpdateBookCommand command = new UpdateBookCommand(_context);
+            command.Model = updatedBook;
+            command.BookId = id;
 
-                UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
-                validator.ValidateAndThrow(command);
+            UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+            validator.ValidateAndThrow(command);
 
-                command.Handle();
-            }
-            catch (Exception ex)
-            {
+            command.Handle();
 
-                return BadRequest(ex.Message);
-            }
-
-            return Ok("Kitap güncellendi");
+            return Ok();
         }
         #endregion
 
@@ -119,22 +99,16 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id)
         {
-            try
-            {
-                DeleteBookCommand command = new DeleteBookCommand(_context);
-                command.BookId = id;
 
-                DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
-                validator.ValidateAndThrow(command);
+            DeleteBookCommand command = new DeleteBookCommand(_context);
+            command.BookId = id;
 
-                command.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+            validator.ValidateAndThrow(command);
 
-            return Ok(id + " numaralı kitap silindi");
+            command.Handle();
+
+            return Ok();
         }
         #endregion
 
