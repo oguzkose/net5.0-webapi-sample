@@ -4,6 +4,7 @@ using WebApi.Applications.BookOperations.Query.GetBooks;
 using WebApi.Applications.BookOperations.Query.GetBookDetail;
 using WebApi.Applications.GenreOperations.Query.GetGenres;
 using WebApi.Entities;
+using WebApi.Applications.GenreOperations.Query.GetGenreDetail;
 
 namespace WebApi.Common
 {
@@ -46,6 +47,7 @@ namespace WebApi.Common
             #endregion
 
             CreateMap<Genre, GenresViewModel>();
+            CreateMap<Genre, GenreDetailViewModel>();
         }
 
     }
