@@ -1,12 +1,11 @@
-using System;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.BookOperations.CreateBook;
-using WebApi.BookOperations.DeleteBook;
-using WebApi.BookOperations.GetBooks;
-using WebApi.BookOperations.GetById;
-using WebApi.BookOperations.UpdateBook;
+using WebApi.Applications.BookOperations.Query.GetBooks;
+using WebApi.Applications.BookOperations.Command.CreateBook;
+using WebApi.Applications.BookOperations.Command.DeleteBook;
+using WebApi.Applications.BookOperations.Query.GetBookDetail;
+using WebApi.Applications.BookOperations.Command.UpdateBook;
 using WebApi.DBOperations;
 
 namespace WebApi.Controllers
@@ -37,17 +36,17 @@ namespace WebApi.Controllers
         }
         #endregion
 
-        #region GetById(GET)
+        #region GetBookDetail(GET)
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetBookDetail(int id)
         {
             BookDetailViewModel result;
 
-            GetByIdQuery query = new GetByIdQuery(_context, _mapper);
+            GetBookDetailQuery query = new GetBookDetailQuery(_context, _mapper);
             query.BookId = id;
 
-            GetByIdQueryValidator validator = new GetByIdQueryValidator();
+            GetBookDetailQueryValidator validator = new GetBookDetailQueryValidator();
             validator.ValidateAndThrow(query);
 
             result = query.Handle();
