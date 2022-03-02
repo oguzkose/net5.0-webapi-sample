@@ -1,7 +1,9 @@
 using AutoMapper;
-using WebApi.BookOperations.CreateBook;
-using WebApi.BookOperations.GetBooks;
-using WebApi.BookOperations.GetById;
+using WebApi.Applications.BookOperations.Command.CreateBook;
+using WebApi.Applications.BookOperations.Query.GetBooks;
+using WebApi.Applications.BookOperations.Query.GetBookDetail;
+using WebApi.Applications.GenreOperations.Query.GetGenres;
+using WebApi.Entities;
 
 namespace WebApi.Common
 {
@@ -43,6 +45,7 @@ namespace WebApi.Common
             );
             #endregion
 
+            CreateMap<Genre, GenresViewModel>();
         }
 
     }
