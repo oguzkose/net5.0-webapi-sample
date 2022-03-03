@@ -17,12 +17,11 @@ namespace WebApi.Common
 
             #region CreateMap<Book, BookDetailViewModel>()
             CreateMap<Book, BookDetailViewModel>()
-            //Source'de ki integer GenreId' yi Destination'da ki string Genre' ye (GenreEnum) map'lemyen config. 
             .ForMember(
                 dest => dest.Genre,
                 opt => opt
-                .MapFrom(src => ((GenreEnum)src.GenreId)
-                .ToString())
+                .MapFrom(src => src.Genre.Name)
+
             )
             //Source' de ki DateTime PublishDate' i Destination' da ki string PublishDate' e map'leyen config.  
             .ForMember(
@@ -37,8 +36,7 @@ namespace WebApi.Common
             .ForMember(
                 dest => dest.Genre,
                 opt => opt
-                .MapFrom(src => ((GenreEnum)src.GenreId)
-                .ToString())
+                .MapFrom(src => src.Genre.Name)
             )
             .ForMember(
                 dest => dest.PublishDate,
