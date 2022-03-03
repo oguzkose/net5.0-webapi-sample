@@ -2,6 +2,7 @@ using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Applications.GenreOperations.Command.CreateGenre;
+using WebApi.Applications.GenreOperations.Command.DeleteGenre;
 using WebApi.Applications.GenreOperations.Query.GetGenreDetail;
 using WebApi.Applications.GenreOperations.Query.GetGenres;
 using WebApi.DBOperations;
@@ -54,6 +55,20 @@ namespace WebApi.Controllers
             command.Model = newGenre;
 
             CreateGenreCommandValidator validator = new CreateGenreCommandValidator();
+            validator.ValidateAndThrow(command);
+
+            command.Handle();
+
+            return Ok();
+        }
+        
+        [HttpDelete("{id}")]
+        public IActionResult DeleteGenre(int id)
+        {
+            DeleteGenreCommand command = new DeleteGenreCommand(_context);
+            command.GenreId = id;
+
+            DeleteGenreCommandValidator validator = new DeleteGenreCommandValidator();
             validator.ValidateAndThrow(command);
 
             command.Handle();
