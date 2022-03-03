@@ -1,6 +1,7 @@
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Applications.GenreOperations.Command.CreateGenre;
 using WebApi.Applications.GenreOperations.Query.GetGenreDetail;
 using WebApi.Applications.GenreOperations.Query.GetGenres;
 using WebApi.DBOperations;
@@ -44,6 +45,20 @@ namespace WebApi.Controllers
             result = query.Handle();
 
             return Ok(result);
+        }
+        [HttpPost]
+        public IActionResult CreateGenre([FromBody] CreateGenreModel newGenre)
+        {
+
+            CreateGenreCommand command = new CreateGenreCommand(_context, _mapper);
+            command.Model = newGenre;
+
+            CreateGenreCommandValidator validator = new CreateGenreCommandValidator();
+            validator.ValidateAndThrow(command);
+
+            command.Handle();
+
+            return Ok();
         }
 
     }
