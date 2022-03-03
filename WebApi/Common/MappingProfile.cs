@@ -5,6 +5,7 @@ using WebApi.Applications.BookOperations.Query.GetBookDetail;
 using WebApi.Applications.GenreOperations.Query.GetGenres;
 using WebApi.Entities;
 using WebApi.Applications.GenreOperations.Query.GetGenreDetail;
+using WebApi.Applications.GenreOperations.Command.CreateGenre;
 
 namespace WebApi.Common
 {
@@ -48,6 +49,7 @@ namespace WebApi.Common
 
             CreateMap<Genre, GenresViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();
+            CreateMap<CreateGenreModel, Genre>();
         }
 
     }
