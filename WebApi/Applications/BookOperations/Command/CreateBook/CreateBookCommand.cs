@@ -8,9 +8,9 @@ namespace WebApi.Applications.BookOperations.Command.CreateBook
 {
     public class CreateBookCommand
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
-        public CreateBookCommand(BookStoreDbContext context, IMapper mapper)
+        public CreateBookCommand(IBookStoreDbContext context, IMapper mapper)
         {
             this._context = context;
             this._mapper = mapper;

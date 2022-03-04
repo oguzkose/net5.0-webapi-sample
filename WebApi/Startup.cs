@@ -34,6 +34,8 @@ namespace WebApi
             //DbContext - DI Cont.
             services.AddDbContext<BookStoreDbContext>(options =>
                 options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
+
+            services.AddScoped<IBookStoreDbContext>(provider => provider.GetService<BookStoreDbContext>());
             //Automapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             //Logging - DI Cont.
