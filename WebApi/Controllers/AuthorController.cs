@@ -1,6 +1,8 @@
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Applications.AuthorOperations.Command.CreateAuthor;
+using WebApi.Applications.AuthorOperations.Command.UpdateAuthor;
 using WebApi.Applications.AuthorOperations.Query.GetAuthorDetail;
 using WebApi.Applications.AuthorOperations.Query.GetAuthors;
 using WebApi.DBOperations;
@@ -26,9 +28,9 @@ namespace WebApi.Controllers
             GetAuthorsQuery query = new GetAuthorsQuery(_context, _mapper);
             var result = query.Handle();
 
-
             return Ok(result);
         }
+
         [HttpGet("{id}")]
         public IActionResult GetAuthorDetail(int id)
         {
@@ -41,6 +43,36 @@ namespace WebApi.Controllers
             var result = query.Handle();
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public IActionResult CreateAAuthor([FromBody] CreateAuthorModel model)
+        {
+            CreateAuthorCommand command = new CreateAuthorCommand(_context, _mapper);
+            command.Model = model;
+
+            CreateAuthorCommandValidator validator = new CreateAuthorCommandValidator();
+            validator.ValidateAndThrow(command);
+
+            command.Handle();
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateAuthor(int id, [FromBody] UpdateAuthorModel updatedModel)
+        {
+            UpdateAuthorCommand command = new UpdateAuthorCommand(_context);
+            command.AuthorId = id;
+            command.Model = updatedModel;
+
+
+            UpdateAuthorCommandValidator validator = new UpdateAuthorCommandValidator();
+            validator.ValidateAndThrow(command);
+
+            command.Handle();
+
+            return Ok();
         }
     }
 }
