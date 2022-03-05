@@ -6,6 +6,8 @@ using WebApi.Applications.GenreOperations.Query.GetGenres;
 using WebApi.Entities;
 using WebApi.Applications.GenreOperations.Query.GetGenreDetail;
 using WebApi.Applications.GenreOperations.Command.CreateGenre;
+using WebApi.Applications.AuthorOperations.Query.GetAuthors;
+using WebApi.Applications.AuthorOperations.Query.GetAuthorDetail;
 
 namespace WebApi.Common
 {
@@ -48,6 +50,22 @@ namespace WebApi.Common
             CreateMap<Genre, GenresViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();
             CreateMap<CreateGenreModel, Genre>();
+
+            CreateMap<Author, AuthorViewModel>()
+            .ForMember(
+                dest => dest.DateOfBirth,
+                opt => opt
+                .MapFrom(src => src.DateOfBirth.ToShortDateString())
+            );
+
+            CreateMap<Author, AuthorDetailViewModel>()
+            .ForMember(
+                dest => dest.DateOfBirth,
+                opt => opt
+                .MapFrom(
+                    src => src.DateOfBirth.ToShortDateString()
+                )
+            );
         }
 
     }
