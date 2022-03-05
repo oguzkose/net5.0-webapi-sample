@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using AutoMapper;
 using FluentAssertions;
 using WebApi.Applications.BookOperations.Command.CreateBook;
@@ -56,6 +57,38 @@ namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
         }
         #endregion
 
-        
+        #region WhenValidInputsAreGiven_Book_ShouldBeCreated()
+        //Bütün inputların doğru gelmesi durumunda Kitap veritabanına kaydedilmeli
+        [Fact]
+        public void WhenValidInputsAreGiven_Book_ShouldBeCreated()
+        {
+            // Arange
+
+            CreateBookCommand command = new CreateBookCommand(_context, _mapper);
+            CreateBookModel model = new CreateBookModel()
+            {
+                Title = "Hobbit",
+                PageCount = 2000,
+                GenreId = 2,
+                PublishDate = DateTime.Now.Date.AddYears(-15)
+            };
+            command.Model = model;
+
+            // Act
+
+            FluentActions.Invoking(() => command.Handle()).Invoke();
+
+            // Assert
+
+            var book = _context.Books.SingleOrDefault(x => x.Title == model.Title);
+
+            book.Should().NotBeNull();
+            book.GenreId.Should().Be(model.GenreId);
+            book.PublishDate.Should().Be(model.PublishDate);
+            book.PageCount.Should().Be(model.PageCount);
+
+        }
+        #endregion
+
     }
 }
