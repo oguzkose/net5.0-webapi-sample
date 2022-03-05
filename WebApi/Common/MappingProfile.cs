@@ -8,6 +8,7 @@ using WebApi.Applications.GenreOperations.Query.GetGenreDetail;
 using WebApi.Applications.GenreOperations.Command.CreateGenre;
 using WebApi.Applications.AuthorOperations.Query.GetAuthors;
 using WebApi.Applications.AuthorOperations.Query.GetAuthorDetail;
+using WebApi.Applications.AuthorOperations.Command.CreateAuthor;
 
 namespace WebApi.Common
 {
@@ -66,6 +67,8 @@ namespace WebApi.Common
                     src => src.DateOfBirth.ToShortDateString()
                 )
             );
+
+            CreateMap<CreateAuthorModel, Author>();
         }
 
     }
