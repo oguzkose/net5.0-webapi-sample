@@ -22,7 +22,8 @@ namespace WebApi.Applications.BookOperations.Query.GetBookDetail
         {
             var book = _context.Books
                 .Include(x => x.Genre)
-                .Where(y => y.Id == BookId).SingleOrDefault();
+                .Include(y => y.Author)
+                .Where(z => z.Id == BookId).SingleOrDefault();
 
             if (book == null)
                 throw new InvalidOperationException(BookId + " numaralı kitap bulunamadı.");
@@ -36,6 +37,7 @@ namespace WebApi.Applications.BookOperations.Query.GetBookDetail
     public class BookDetailViewModel
     {
         public string Title { get; set; }
+        public string Author { get; set; }
         public string Genre { get; set; }
         public int PageCount { get; set; }
         public string PublishDate { get; set; }
