@@ -8,6 +8,7 @@ namespace WebApi.Applications.BookOperations.Command.UpdateBook
         public UpdateBookCommandValidator()
         {
             RuleFor(command => command.BookId).NotEmpty().GreaterThan(0);
+            RuleFor(command => command.Model.AuthorId).NotEmpty().GreaterThan(0);
             RuleFor(command => command.Model.GenreId).NotEmpty().GreaterThan(0);
             RuleFor(command => command.Model.PageCount).NotEmpty().GreaterThan(0);
             RuleFor(command => command.Model.PublishDate.Date).NotEmpty().LessThan(DateTime.Now.Date);
