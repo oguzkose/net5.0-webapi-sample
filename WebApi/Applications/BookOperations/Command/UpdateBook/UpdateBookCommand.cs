@@ -21,6 +21,7 @@ namespace WebApi.Applications.BookOperations.Command.UpdateBook
                 throw new InvalidOperationException("Güncellemek istediğiniz kitap bulunamadı");
 
             book.Title = Model.Title != default ? Model.Title : book.Title;
+            book.AuthorId = Model.AuthorId != default ? Model.AuthorId : book.AuthorId;
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
             book.PageCount = Model.PageCount != default ? Model.PageCount : book.PageCount;
             book.PublishDate = Model.PublishDate != default ? Model.PublishDate : book.PublishDate;
@@ -32,6 +33,7 @@ namespace WebApi.Applications.BookOperations.Command.UpdateBook
     public class UpdatedBookModel
     {
         public string Title { get; set; }
+        public int AuthorId { get; set; }
         public int GenreId { get; set; }
         public int PageCount { get; set; }
         public DateTime PublishDate { get; set; }
