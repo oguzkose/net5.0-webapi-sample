@@ -26,6 +26,11 @@ namespace WebApi.Common
                 .MapFrom(src => src.Genre.Name)
 
             )
+            .ForMember(
+                dest => dest.Author,
+                opt => opt
+                .MapFrom(src => src.Author.Name + " " + src.Author.Surname)
+            )
             //Source' de ki DateTime PublishDate' i Destination' da ki string PublishDate' e map'leyen config.  
             .ForMember(
                 dest => dest.PublishDate,
@@ -42,6 +47,11 @@ namespace WebApi.Common
                 .MapFrom(src => src.Genre.Name)
             )
             .ForMember(
+                dest => dest.Author,
+                opt => opt
+                .MapFrom(src => src.Author.Name + " " + src.Author.Surname)
+            )
+            .ForMember(
                 dest => dest.PublishDate,
                 opt => opt
                 .MapFrom(src => (src.PublishDate.ToString("dd/MM/yyy")))
@@ -51,6 +61,7 @@ namespace WebApi.Common
             CreateMap<Genre, GenresViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();
             CreateMap<CreateGenreModel, Genre>();
+
 
             CreateMap<Author, AuthorViewModel>()
             .ForMember(
