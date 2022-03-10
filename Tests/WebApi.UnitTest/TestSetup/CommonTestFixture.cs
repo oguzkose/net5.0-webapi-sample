@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Common;
 using WebApi.DBOperations;
 
-namespace WebApi.UnitTest.TestSetup
+namespace Tests.WebApi.UnitTest.TestSetup
 {
     public class CommonTestFixture
     {
@@ -19,6 +19,8 @@ namespace WebApi.UnitTest.TestSetup
 
             Context.AddBooks();
             Context.AddGenres();
+            Context.AddAuthors();
+
             Context.SaveChanges();
 
             //AutoMapper config.
