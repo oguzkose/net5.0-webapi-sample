@@ -2,7 +2,7 @@ using System;
 using WebApi.DBOperations;
 using WebApi.Entities;
 
-namespace WebApi.UnitTest.TestSetup
+namespace Tests.WebApi.UnitTest.TestSetup
 {
     public static class Books
     {
