@@ -20,10 +20,10 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
             _mapper = fixture.Mapper;
         }
 
-        #region WhenAllreadyExistBookTitleIsGiven_InvalidOperationException_ShouldBeReturn()
-        //Varolan Title'da bir kitap yaratılmak istenirse InvalidOperationException dönmeli
+        #region WhenAlreadyExistBookTitleIsGiven_InvalidOperationException_ShouldBeReturn()
+        
         [Fact]
-        public void WhenAllreadyExistBookTitleIsGiven_InvalidOperationException_ShouldBeReturn()
+        public void WhenAlreadyExistBookTitleIsGiven_InvalidOperationException_ShouldBeReturn()
         {
             //Arrange
 
@@ -59,7 +59,7 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
         #endregion
 
         #region WhenValidInputsAreGiven_Book_ShouldBeCreated()
-        //Bütün inputların doğru gelmesi durumunda Kitap veritabanına kaydedilmeli
+        
         [Fact]
         public void WhenValidInputsAreGiven_Book_ShouldBeCreated()
         {

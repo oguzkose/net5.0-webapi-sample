@@ -7,11 +7,9 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.CreateGenr
 {
     public class CreateGenreCommandValidationTest : IClassFixture<CommonTestFixture>
     {
-
+        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string name)
         [Theory]
         [InlineData("")]
-        [InlineData("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")]
-
         public void WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string name)
         {
             //Arrange
@@ -31,8 +29,9 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.CreateGenr
 
             result.Errors.Count.Should().BeGreaterThan(0);
         }
+        #endregion
 
-        //Happy Path
+        #region WhenValidInputsAreGiven_Validator_ShouldNotBeReturnErrors()
 
         [Fact]
         public void WhenValidInputsAreGiven_Validator_ShouldNotBeReturnErrors()
@@ -54,5 +53,7 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.CreateGenr
 
             result.Errors.Count.Should().Be(0);
         }
+        #endregion
+
     }
 }

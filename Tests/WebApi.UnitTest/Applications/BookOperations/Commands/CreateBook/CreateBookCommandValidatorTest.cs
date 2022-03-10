@@ -9,9 +9,8 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
     public class CreateBookCommandValidatorTest : IClassFixture<CommonTestFixture>
     {
 
-        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string title, int pageCount, int genreId)
+        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string title, int pageCount, int genreId, int authorId)
 
-        // Input'lara Valid olmayan değerler verilirse Error dönmeli
         [Theory]
         [InlineData("Lord Of The Rings", 0, 0, 0)]
         [InlineData("Lord Of The Rings", 1, 0, 1)]
@@ -47,7 +46,7 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
         #endregion
 
         #region WhenDateTimeEqualNowIsGiven_Validator_ShouldBeReturnError()
-        //Eğer PublishDate DateTime.Now verilirse Error dönmeli 
+
         [Fact]
         public void WhenDateTimeEqualNowIsGiven_Validator_ShouldBeReturnError()
         {
@@ -73,9 +72,8 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
         }
         #endregion
 
-        #region Happy Path - WhenValidInputsAreGiven_Validator_ShouldNotBeReturnError()
+        #region WhenValidInputsAreGiven_Validator_ShouldNotBeReturnError()
 
-        //Eğer tüm inputlar valid ise Error dönmemeli
         [Fact]
         public void WhenValidInputsAreGiven_Validator_ShouldNotBeReturnError()
         {
