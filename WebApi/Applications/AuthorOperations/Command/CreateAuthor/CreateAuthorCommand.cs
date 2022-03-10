@@ -22,7 +22,7 @@ namespace WebApi.Applications.AuthorOperations.Command.CreateAuthor
         {
             var author = _context.Authors.SingleOrDefault(x => x.Name == Model.Name && x.Surname == Model.Surname);
             if (author is not null)
-                throw new InvalidOperationException(Model.Name + " " + Model.Surname + " zaten mevcut.");
+                throw new InvalidOperationException("Yazar zaten mevcut.");
 
             author = _mapper.Map<Author>(Model);
 
