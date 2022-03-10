@@ -2,13 +2,13 @@ using System;
 using System.Linq;
 using AutoMapper;
 using FluentAssertions;
+using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.BookOperations.Command.CreateBook;
 using WebApi.DBOperations;
 using WebApi.Entities;
-using WebApi.UnitTest.TestSetup;
 using Xunit;
 
-namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
+namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
 {
     public class CreateBookCommandTest : IClassFixture<CommonTestFixture>
     {
@@ -33,6 +33,7 @@ namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
                 PageCount = 1000,
                 PublishDate = new DateTime(1992, 04, 21),
                 GenreId = 1,
+                AuthorId = 1
 
             };
             _context.Books.Add(book);
@@ -70,7 +71,8 @@ namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
                 Title = "Hobbit",
                 PageCount = 2000,
                 GenreId = 2,
-                PublishDate = DateTime.Now.Date.AddYears(-15)
+                PublishDate = DateTime.Now.Date.AddYears(-15),
+                AuthorId = 1
             };
             command.Model = model;
 
@@ -80,10 +82,11 @@ namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
 
             // Assert
 
-            var book = _context.Books.SingleOrDefault(x => x.Title == model.Title);
+            var book = _context.Books.First(x => x.Title == model.Title);
 
             book.Should().NotBeNull();
             book.GenreId.Should().Be(model.GenreId);
+            book.AuthorId.Should().Be(model.AuthorId);
             book.PublishDate.Should().Be(model.PublishDate);
             book.PageCount.Should().Be(model.PageCount);
 
