@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.CreateGenre
 {
-    public class CreateGenreCommandValidationTest : IClassFixture<CommonTestFixture>
+    public class CreateGenreCommandValidatorTest : IClassFixture<CommonTestFixture>
     {
         #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string name)
         [Theory]
