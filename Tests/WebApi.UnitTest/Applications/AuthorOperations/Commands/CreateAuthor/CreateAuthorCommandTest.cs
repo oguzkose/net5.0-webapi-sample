@@ -19,9 +19,14 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.CreateAut
             _context = fixture.Context;
             _mapper = fixture.Mapper;
         }
+
+        #region WhenAlreadyExistAuthorNameAndSurnameAreGiven_InvalidOperationException_ShouldBeReturn()
+
         [Fact]
         public void WhenAlreadyExistAuthorNameAndSurnameAreGiven_InvalidOperationException_ShouldBeReturn()
         {
+            //Arrange
+
             var author = new Author
             {
                 Name = "Nikos",
@@ -38,6 +43,8 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.CreateAut
                 Surname = author.Surname
             };
 
+            //Act & Assert
+
             FluentActions.Invoking(
                 () => command.Handle()
                     )
@@ -45,12 +52,14 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.CreateAut
                     .And.Message.Should().Be("Yazar zaten mevcut.");
 
         }
+        #endregion
 
-
+        #region WhenValidInputsAreGiven_Author_ShouldBeCreated()
         [Fact]
         public void WhenValidInputsAreGiven_Author_ShouldBeCreated()
         {
             //Arrange
+
             CreateAuthorCommand command = new CreateAuthorCommand(_context, _mapper);
             CreateAuthorModel model = new CreateAuthorModel()
             {
@@ -61,11 +70,13 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.CreateAut
             command.Model = model;
 
             //Act
+
             FluentActions.Invoking(
                 () => command.Handle()
             ).Invoke();
 
             //Arrange
+
             var author = _context.Authors.First(x => x.Name == model.Name && x.Surname == model.Surname);
 
             author.Should().NotBeNull();
@@ -73,6 +84,7 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.CreateAut
             author.DateOfBirth.Should().Be(model.DateOfBirth);
 
         }
+        #endregion
 
     }
 }
