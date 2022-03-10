@@ -1,10 +1,10 @@
 using System;
 using FluentAssertions;
 using WebApi.Applications.BookOperations.Command.CreateBook;
-using WebApi.UnitTest.TestSetup;
+using Tests.WebApi.UnitTest.TestSetup;
 using Xunit;
 
-namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
+namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
 {
     public class CreateBookCommandValidatorTest : IClassFixture<CommonTestFixture>
     {
@@ -13,15 +13,15 @@ namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
 
         // Input'lara Valid olmayan değerler verilirse Error dönmeli
         [Theory]
-        [InlineData("Lord Of The Rings", 0, 0)]
-        [InlineData("Lord Of The Rings", 1, 0)]
-        [InlineData("Lord Of The Rings", 0, 1)]
-        [InlineData("", 0, 0)]
-        [InlineData("", 1, 0)]
-        [InlineData("", 0, 1)]
-        [InlineData("", 1, 1)]
-        [InlineData("       ", 1, 1)]
-        public void WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string title, int pageCount, int genreId)
+        [InlineData("Lord Of The Rings", 0, 0, 0)]
+        [InlineData("Lord Of The Rings", 1, 0, 1)]
+        [InlineData("Lord Of The Rings", 0, 1, 0)]
+        [InlineData("", 0, 0, 1)]
+        [InlineData("", 1, 0, 1)]
+        [InlineData("", 0, 1, 1)]
+        [InlineData("", 1, 1, 1)]
+        [InlineData("       ", 1, 1, 1)]
+        public void WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string title, int pageCount, int genreId, int authorId)
         {
             //Arrange
 
@@ -31,7 +31,8 @@ namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
                 Title = title,
                 PageCount = pageCount,
                 PublishDate = DateTime.Now.Date.AddYears(-1),
-                GenreId = genreId
+                GenreId = genreId,
+                AuthorId = authorId
             };
 
             //Act
@@ -85,6 +86,7 @@ namespace WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
             {
                 Title = "Hobbit",
                 PageCount = 2000,
+                AuthorId = 2,
                 GenreId = 2,
                 PublishDate = DateTime.Now.Date.AddYears(-1)
             };
