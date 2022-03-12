@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             GetAuthorDetailQuery query = new GetAuthorDetailQuery(_context, _mapper);
             query.AuthorId = id;
 
-            GetAuthorDetailValidator validator = new GetAuthorDetailValidator();
+            GetAuthorDetailQueryValidator validator = new GetAuthorDetailQueryValidator();
             validator.ValidateAndThrow(query);
 
             var result = query.Handle();
