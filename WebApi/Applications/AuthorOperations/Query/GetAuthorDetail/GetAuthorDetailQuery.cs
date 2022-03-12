@@ -20,7 +20,7 @@ namespace WebApi.Applications.AuthorOperations.Query.GetAuthorDetail
         {
             var author = _context.Authors.FirstOrDefault(x => x.Id == AuthorId);
             if (author is null)
-                throw new InvalidOperationException(AuthorId + " numaralı yazar bulunamadı");
+                throw new InvalidOperationException("Yazar bulunamadı");
 
             AuthorDetailViewModel vm = _mapper.Map<AuthorDetailViewModel>(author);
             return vm;
