@@ -20,8 +20,8 @@ namespace WebApi.Applications.GenreOperations.Query.GetGenres
         public List<GenresViewModel> Handle()
         {
             var genres = _context.Genres.OrderBy(x => x.Id);
-            if (genres is null)
-                throw new InvalidOperationException();
+            if (!genres.Any())
+                throw new InvalidOperationException("Tür bulunamadı");
 
             List<GenresViewModel> vm = _mapper.Map<List<GenresViewModel>>(genres);
 
