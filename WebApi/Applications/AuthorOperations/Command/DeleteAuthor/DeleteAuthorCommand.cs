@@ -22,10 +22,10 @@ namespace WebApi.Applications.AuthorOperations.Command.DeleteAuthor
                 throw new InvalidOperationException("Silinecek yazar bulunamadı");
 
 
-            var books = _context.Books.Where(x => x.AuthorId == AuthorId).ToList();
-            if (books.Count > 0)
-                _context.Books.RemoveRange(books);
-
+            var booksOfAuthor = _context.Books.Where(x => x.AuthorId == AuthorId).ToList();
+            if (booksOfAuthor.Count > 0)
+                _context.Books.RemoveRange(booksOfAuthor);
+    
             _context.Authors.Remove(author);
             _context.SaveChanges();
         }
