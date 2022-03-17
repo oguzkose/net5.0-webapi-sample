@@ -9,12 +9,12 @@ using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Query.GetGenres
 {
-    public class GetGenresQueryCommandTest : IClassFixture<CommonTestFixture>
+    public class GetGenresQueryTest : IClassFixture<CommonTestFixture>
     {
         private readonly BookStoreDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetGenresQueryCommandTest(CommonTestFixture fixture)
+        public GetGenresQueryTest(CommonTestFixture fixture)
         {
             _context = fixture.Context;
             _mapper = fixture.Mapper;
