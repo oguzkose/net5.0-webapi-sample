@@ -1,14 +1,12 @@
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.GenreOperations.Command.UpdateGenre;
-using WebApi.Entities;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.UpdateGenre
 {
-    public class UpdateGenreCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class UpdateGenreCommandValidatorTest
     {
-
+        #region WhenInvalidInputIsGiven_Validator_ShouldBeReturnError()
         [Theory]
         [InlineData(-1, "Romance", true)]
         [InlineData(-2, "", false)]
@@ -28,7 +26,9 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.UpdateGenr
             result.Errors.Count.Should().BeGreaterThan(0);
 
         }
+        #endregion
 
+        #region WhenValidInputsAreGiven_Validator_ShouldNotBeReturnError()
         [Theory]
         [InlineData(1, "Romance", true)]
         [InlineData(2, "Poetry", true)]
@@ -48,5 +48,7 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.UpdateGenr
             result.Errors.Count.Should().BeLessThan(1);
 
         }
+        #endregion
+
     }
 }

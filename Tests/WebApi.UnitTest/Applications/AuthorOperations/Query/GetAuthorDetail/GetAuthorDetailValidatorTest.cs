@@ -1,14 +1,13 @@
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.AuthorOperations.Query.GetAuthorDetail;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Query.GetAuthorDetail
 {
-    public class GetAuthorDetailValidatorTest : IClassFixture<CommonTestFixture>
+    public class GetAuthorDetailValidatorTest
     {
 
-        #region WhenInvalidAuthorIdIsGiven_Validator_ShouldBeReturnError(int authorId)
+        #region WhenInvalidAuthorIdIsGiven_Validator_ShouldBeReturnError()
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
@@ -30,7 +29,7 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Query.GetAuthorDet
         }
         #endregion
 
-        #region WhenValidAuthorIdIsGiven_Validator_ShoulNotBeReturnError(int authorId)
+        #region WhenValidAuthorIdIsGiven_Validator_ShoulNotBeReturnError()
         [Theory]
         [InlineData(1)]
         [InlineData(2)]

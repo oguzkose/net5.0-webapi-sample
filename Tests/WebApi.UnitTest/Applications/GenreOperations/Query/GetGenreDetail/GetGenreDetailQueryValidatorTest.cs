@@ -1,12 +1,12 @@
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.GenreOperations.Query.GetGenreDetail;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Query.GetGenreDetail
 {
-    public class GetGenreDetailQueryValidatorTest : IClassFixture<CommonTestFixture>
+    public class GetGenreDetailQueryValidatorTest
     {
+        #region WhenInvalidGenreIdIsGiven_Validator_ShouldBeReturnError()
         [Theory]
         [InlineData(-5)]
         [InlineData(-10)]
@@ -20,7 +20,9 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Query.GetGenreDetai
 
             result.Errors.Count.Should().BeGreaterThan(0);
         }
+        #endregion
 
+        #region WhenValidGenreIdIsGiven_Validator_ShouldBeNotReturnError()
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -35,5 +37,7 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Query.GetGenreDetai
 
             result.Errors.Count.Should().BeLessThan(1);
         }
+        #endregion
+
     }
 }

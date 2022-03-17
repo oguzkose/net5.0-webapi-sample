@@ -1,15 +1,14 @@
 using System;
 using FluentAssertions;
 using WebApi.Applications.BookOperations.Command.CreateBook;
-using Tests.WebApi.UnitTest.TestSetup;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
 {
-    public class CreateBookCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class CreateBookCommandValidatorTest
     {
 
-        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string title, int pageCount, int genreId, int authorId)
+        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors()
 
         [Theory]
         [InlineData("Lord Of The Rings", 0, 0, 0)]

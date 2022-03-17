@@ -1,13 +1,12 @@
 using FluentAssertions;
 using WebApi.Applications.GenreOperations.Command.CreateGenre;
-using Tests.WebApi.UnitTest.TestSetup;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.CreateGenre
 {
-    public class CreateGenreCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class CreateGenreCommandValidatorTest
     {
-        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string name)
+        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors()
         [Theory]
         [InlineData("")]
         public void WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string name)

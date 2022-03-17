@@ -1,11 +1,10 @@
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.BookOperations.Command.DeleteBook;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.DeleteBook
 {
-    public class DeleteBookCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class DeleteBookCommandValidatorTest
     {
         #region Name WhenInvalidBookIdIsGiven_Validator_ShouldBeReturnError()
         [Theory]

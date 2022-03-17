@@ -1,12 +1,12 @@
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.GenreOperations.Command.DeleteGenre;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.DeleteGenre
 {
-    public class DeleteGenreCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class DeleteGenreCommandValidatorTest
     {
+        #region WhenInvalidGenreIdIsGiven_Validator_ShouldBeReturnError()
         [Theory]
         [InlineData(-4)]
         [InlineData(-5)]
@@ -20,5 +20,7 @@ namespace Tests.WebApi.UnitTest.Applications.GenreOperations.Commands.DeleteGenr
             var result = validator.Validate(command);
             result.Errors.Count.Should().BeGreaterThan(0);
         }
+        #endregion
+
     }
 }

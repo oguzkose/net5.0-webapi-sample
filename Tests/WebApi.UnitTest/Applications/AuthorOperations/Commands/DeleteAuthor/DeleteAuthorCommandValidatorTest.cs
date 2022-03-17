@@ -1,12 +1,12 @@
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.AuthorOperations.Command.DeleteAuthor;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.DeleteAuthor
 {
-    public class DeleteAuthorCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class DeleteAuthorCommandValidatorTest
     {
+        #region WhenInvalidAuthorIdIsGiven_Validator_ShouldBeReturnError()
         [Theory]
         [InlineData(null)]
         [InlineData(-5)]
@@ -20,5 +20,6 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.DeleteAut
 
             result.Errors.Count.Should().BeGreaterThan(0);
         }
+        #endregion
     }
 }

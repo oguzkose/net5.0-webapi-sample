@@ -1,12 +1,11 @@
 using System;
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.BookOperations.Command.UpdateBook;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.UpdateBook
 {
-    public class UpdateBookCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class UpdateBookCommandValidatorTest
     {
         #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors()
 

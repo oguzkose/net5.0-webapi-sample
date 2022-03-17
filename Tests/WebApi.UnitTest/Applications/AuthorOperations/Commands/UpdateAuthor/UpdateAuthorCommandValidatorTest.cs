@@ -1,14 +1,13 @@
 using System;
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.AuthorOperations.Command.UpdateAuthor;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.UpdateAuthor
 {
-    public class UpdateAuthorCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class UpdateAuthorCommandValidatorTest
     {
-        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string name, string surname)
+        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors()
         [Theory]
         [InlineData(1, "", "")]
         [InlineData(1, "  ", "  ")]

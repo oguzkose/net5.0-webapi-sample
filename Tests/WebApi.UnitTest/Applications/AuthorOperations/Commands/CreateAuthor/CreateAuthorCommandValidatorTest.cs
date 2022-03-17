@@ -1,14 +1,13 @@
 using System;
 using FluentAssertions;
-using Tests.WebApi.UnitTest.TestSetup;
 using WebApi.Applications.AuthorOperations.Command.CreateAuthor;
 using Xunit;
 
 namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.CreateAuthor
 {
-    public class CreateAuthorCommandValidatorTest : IClassFixture<CommonTestFixture>
+    public class CreateAuthorCommandValidatorTest
     {
-        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors(string name, string surname)
+        #region WhenInvalidInputsAreGiven_Validator_ShouldBeReturnErrors
         [Theory]
         [InlineData("", "")]
         [InlineData("  ", "  ")]
@@ -87,7 +86,5 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.CreateAut
             result.Errors.Count.Should().Be(0);
         }
         #endregion
-
-
     }
 }
