@@ -8,7 +8,6 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Commands.DeleteAut
     {
         #region WhenInvalidAuthorIdIsGiven_Validator_ShouldBeReturnError()
         [Theory]
-        [InlineData(null)]
         [InlineData(-5)]
         public void WhenInvalidAuthorIdIsGiven_Validator_ShouldBeReturnError(int authorId)
         {
