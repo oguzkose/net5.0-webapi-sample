@@ -21,6 +21,12 @@ namespace WebApi.Applications.BookOperations.Command.CreateBook
             var book = _context.Books.SingleOrDefault(x => x.Title == Model.Title);
             if (book is not null)
                 throw new InvalidOperationException("Kitap zaten mevcut");
+            //AuthorId - GenreId Check    
+            var authorCheck = _context.Authors.Any(x => x.Id == Model.AuthorId);
+            var genreCheck = _context.Genres.Any(x => x.Id == Model.GenreId);
+
+            if (authorCheck == false || genreCheck == false)
+                throw new InvalidOperationException("AuthorId ve/veya GenreId mevcut değil");
 
             book = _mapper.Map<Book>(Model);
 
