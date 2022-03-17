@@ -21,7 +21,7 @@ namespace WebApi.Applications.AuthorOperations.Query.GetAuthors
         {
             var authorList = _context.Authors.ToList();
 
-            if (authorList is null)
+            if (authorList.Count < 1)
                 throw new InvalidOperationException("Kayıtlı bir yazar bulunamadı");
 
             List<AuthorViewModel> vm = _mapper.Map<List<AuthorViewModel>>(authorList);
