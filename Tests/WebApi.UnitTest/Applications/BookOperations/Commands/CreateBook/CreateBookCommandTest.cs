@@ -21,7 +21,7 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
         }
 
         #region WhenAlreadyExistBookTitleIsGiven_InvalidOperationException_ShouldBeReturn()
-        
+
         [Fact]
         public void WhenAlreadyExistBookTitleIsGiven_InvalidOperationException_ShouldBeReturn()
         {
@@ -59,7 +59,7 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
         #endregion
 
         #region WhenValidInputsAreGiven_Book_ShouldBeCreated()
-        
+
         [Fact]
         public void WhenValidInputsAreGiven_Book_ShouldBeCreated()
         {
@@ -89,6 +89,36 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Commands.CreateBook
             book.AuthorId.Should().Be(model.AuthorId);
             book.PublishDate.Should().Be(model.PublishDate);
             book.PageCount.Should().Be(model.PageCount);
+
+        }
+        #endregion
+
+        #region WhenUnavailableAutorIdAndOrGenreIdAreGiven_InvalidOperationException_ShouldBeReturn
+
+        [Theory]
+        [InlineData("TestTitle", 13, 13, 100)]
+        [InlineData("TestTitle", 1, 13, 100)]
+        [InlineData("TestTitle", 13, 1, 100)]
+        public void WhenUnavailableAutorIdAndOrGenreIdAreGiven_InvalidOperationException_ShouldBeReturn(string title, int authorId, int genreId, int pageCount)
+        {
+            //Arrange
+
+            CreateBookCommand command = new CreateBookCommand(_context, _mapper);
+            CreateBookModel newModel = new CreateBookModel()
+            {
+                Title = title,
+                AuthorId = authorId,
+                GenreId = genreId,
+                PageCount = pageCount,
+                PublishDate = DateTime.Now.Date.AddYears(-12)
+            };
+            command.Model = newModel;
+
+            //Act & Assert
+
+            FluentActions.Invoking(
+                () => command.Handle()
+            ).Should().Throw<InvalidOperationException>().And.Message.Should().Be("AuthorId ve/veya GenreId mevcut değil");
 
         }
         #endregion
