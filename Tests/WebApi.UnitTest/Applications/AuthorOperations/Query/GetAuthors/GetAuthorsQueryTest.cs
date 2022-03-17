@@ -20,26 +20,27 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Query.GetAuthors
         }
 
         #region WhenThereIsNoCurrentAuthor_InvalidOperationException_ShouldBeReturn()
-        // [Fact]
-        // public void WhenThereIsNoCurrentAuthor_InvalidOperationException_ShouldBeReturn()
-        // {
-        //     // Arrange
+        [Fact]
+        public void WhenThereIsNoCurrentAuthor_InvalidOperationException_ShouldBeReturn()
+        {
+            // Arrange
 
-        //     GetAuthorsQuery query = new GetAuthorsQuery(_context, _mapper);
+            GetAuthorsQuery query = new GetAuthorsQuery(_context, _mapper);
 
-        //     var authorList = _context.Authors.ToList();
-        //     _context.RemoveRange(authorList);
-        //     _context.SaveChanges();
+            var authorList = _context.Authors.ToList();
+            _context.RemoveRange(authorList);
+            _context.SaveChanges();
 
-        //     // Act & Assert
+            // Act & Assert
 
-        //     FluentActions.Invoking(
-        //         () => query.Handle()
-        //     ).Should().Throw<InvalidOperationException>().And.Message.Should().Be("Kayıtlı bir yazar bulunamadı");
+            FluentActions.Invoking(
+                () => query.Handle()
+            ).Should().Throw<InvalidOperationException>().And.Message.Should().Be("Kayıtlı bir yazar bulunamadı");
 
-        // }
+        }
         #endregion
 
+        #region WhenThereAreCurrentAuthor_Authors_ShouldBeReturn()
         [Fact]
         public void WhenThereAreCurrentAuthor_Authors_ShouldBeReturn()
         {
@@ -53,5 +54,7 @@ namespace Tests.WebApi.UnitTest.Applications.AuthorOperations.Query.GetAuthors
 
             result.Count.Should().BeGreaterThan(0);
         }
+        #endregion
+
     }
 }
