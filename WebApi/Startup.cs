@@ -45,26 +45,26 @@ namespace WebApi
             //Logging - DI Cont.
             services.AddSingleton<ILoggerService, ConsoleLogger>();
             //JWT Bearer Authentication Conf
-            // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
-            // {
-            //     opt.TokenValidationParameters = new TokenValidationParameters
-            //     {
-            //         //Token'i kimler izleyebilir-kullanabilir => valide edilecek
-            //         ValidateAudience = true,
-            //         //Token'in dağıtıcısı => kontrol edilecek
-            //         ValidateIssuer = true,
-            //         //Token'in lifetime'i  => süresi takip edilecek
-            //         ValidateLifetime = true,
-            //         //Token'i imzalayacak key => kontrol edilecek
-            //         ValidateIssuerSigningKey = true,
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //Token'i kimler izleyebilir-kullanabilir => valide edilecek
+                    ValidateAudience = true,
+                    //Token'in dağıtıcısı => kontrol edilecek
+                    ValidateIssuer = true,
+                    //Token'in lifetime'i  => süresi takip edilecek
+                    ValidateLifetime = true,
+                    //Token'i imzalayacak key => kontrol edilecek
+                    ValidateIssuerSigningKey = true,
 
-            //         ValidIssuer = Configuration["Token:Issuer"],
-            //         ValidAudience = Configuration["Token:Audience"],
-            //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecurityKey"])),
-            //         ClockSkew = TimeSpan.Zero
+                    ValidIssuer = Configuration["Token:Issuer"],
+                    ValidAudience = Configuration["Token:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecurityKey"])),
+                    ClockSkew = TimeSpan.Zero
 
-            //     };
-            // });
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,7 +76,7 @@ namespace WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
