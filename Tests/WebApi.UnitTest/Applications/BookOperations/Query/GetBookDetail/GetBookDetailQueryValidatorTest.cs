@@ -13,6 +13,7 @@ namespace Tests.WebApi.UnitTest.Applications.BookOperations.Query.GetBookDetail
         public void WhenInvalidBookIdIsGiven_Validator_ShouldBeReturnError(int bookId)
         {
             GetBookDetailQuery query = new GetBookDetailQuery(null, null);
+            query.BookId = bookId;
 
             GetBookDetailQueryValidator validator = new GetBookDetailQueryValidator();
             var result = validator.Validate(query);
