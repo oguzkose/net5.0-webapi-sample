@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
@@ -24,6 +25,9 @@ namespace WebApi.Applications.BookOperations.Query.GetBooks
                 .Include(y => y.Author)
                 .OrderBy(z => z.Id)
                 .ToList();
+
+            if (bookList.Count == 0)
+                throw new InvalidOperationException("Kitap bulunamadı");
 
             List<BooksViewModel> vm = _mapper.Map<List<BooksViewModel>>(bookList);
 
