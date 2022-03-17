@@ -19,7 +19,7 @@ namespace WebApi.Applications.GenreOperations.Query.GetGenres
         }
         public List<GenresViewModel> Handle()
         {
-            var genres = _context.Genres.OrderBy(x => x.Id);
+            var genres = _context.Genres.Where(x => x.IsActive == true).OrderBy(y => y.Id);
             if (!genres.Any())
                 throw new InvalidOperationException("Tür bulunamadı");
 
