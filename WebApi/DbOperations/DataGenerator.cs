@@ -22,28 +22,27 @@ namespace WebApi.DBOperations
                 context.Books.AddRange(
                     new Book
                     {
-                        Title = "Nutuk",
+                        Title = "Dune",
                         AuthorId = 1,
-                        GenreId = 3,
+                        GenreId = 1,
+                        PageCount = 520,
+                        PublishDate = new DateTime(1989, 02, 15)
+                    },
+                    new Book
+                    {
+                        Title = "Nutuk",
+                        AuthorId = 2,
+                        GenreId = 2,
                         PageCount = 450,
                         PublishDate = new DateTime(1937, 05, 13)
                     },
                     new Book
                     {
-                        Title = "Şimdinin Gücü",
-                        AuthorId = 2,
-                        GenreId = 1,
+                        Title = "The Power Of Now",
+                        AuthorId = 3,
+                        GenreId = 3,
                         PageCount = 350,
                         PublishDate = new DateTime(2018, 12, 01)
-
-                    },
-                    new Book
-                    {
-                        Title = "Dune",
-                        AuthorId = 3,
-                        GenreId = 2,
-                        PageCount = 520,
-                        PublishDate = new DateTime(1989, 02, 15)
                     }
                 );
 
@@ -51,19 +50,25 @@ namespace WebApi.DBOperations
                 context.Genres.AddRange(
                     new Genre
                     {
-                        Name = "Personal Growth",
+                        Name = "Science Fiction"
                     },
                     new Genre
                     {
-                        Name = "Science Fiction",
+                        Name = "History"
                     },
                     new Genre
                     {
-                        Name = "History",
+                        Name = "Personal Growth"
                     }
                 );
 
                 context.Authors.AddRange(
+                    new Author
+                    {
+                        Name = "Frank",
+                        Surname = "Herbert",
+                        DateOfBirth = new DateTime(1920, 10, 08)
+                    },
                     new Author
                     {
                         Name = "Mustafa Kemal",
@@ -75,12 +80,6 @@ namespace WebApi.DBOperations
                         Name = "Eckhart",
                         Surname = "Tolle",
                         DateOfBirth = new DateTime(1948, 12, 10)
-                    },
-                    new Author
-                    {
-                        Name = "Frank",
-                        Surname = "Herbert",
-                        DateOfBirth = new DateTime(1920, 10, 08)
                     }
                 );
 
