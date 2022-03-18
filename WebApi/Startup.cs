@@ -28,7 +28,28 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //JWT Bearer Authentication Conf
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new TokenValidationParameters
+                {
+                     //Token'i kimler izleyebilir-kullanabilir => valide edilecek
+                     ValidateAudience = true,
+                     //Token'in dağıtıcısı => kontrol edilecek
+                     ValidateIssuer = true,
+                     //Token'in lifetime'i  => süresi takip edilecek
+                     ValidateLifetime = true,
+                     //Token'i imzalayacak key => kontrol edilecek
+                     ValidateIssuerSigningKey = true,
 
+                    ValidIssuer = Configuration["Token:Issuer"],
+                    ValidAudience = Configuration["Token:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecurityKey"])),
+                    ClockSkew = TimeSpan.Zero
+
+                };
+            });
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -44,27 +65,7 @@ namespace WebApi
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             //Logging - DI Cont.
             services.AddSingleton<ILoggerService, ConsoleLogger>();
-            //JWT Bearer Authentication Conf
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
-            {
-                opt.TokenValidationParameters = new TokenValidationParameters
-                {
-                    //Token'i kimler izleyebilir-kullanabilir => valide edilecek
-                    ValidateAudience = true,
-                    //Token'in dağıtıcısı => kontrol edilecek
-                    ValidateIssuer = true,
-                    //Token'in lifetime'i  => süresi takip edilecek
-                    ValidateLifetime = true,
-                    //Token'i imzalayacak key => kontrol edilecek
-                    ValidateIssuerSigningKey = true,
-
-                    ValidIssuer = Configuration["Token:Issuer"],
-                    ValidAudience = Configuration["Token:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecurityKey"])),
-                    ClockSkew = TimeSpan.Zero
-
-                };
-            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
