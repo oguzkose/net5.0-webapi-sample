@@ -9,6 +9,7 @@ using WebApi.Applications.GenreOperations.Command.CreateGenre;
 using WebApi.Applications.AuthorOperations.Query.GetAuthors;
 using WebApi.Applications.AuthorOperations.Query.GetAuthorDetail;
 using WebApi.Applications.AuthorOperations.Command.CreateAuthor;
+using static WebApi.Applications.UserOperations.Command.CreateUser.CreateUserCommand;
 
 namespace WebApi.Common
 {
@@ -16,9 +17,9 @@ namespace WebApi.Common
     {
         public MappingProfile()
         {
+            #region Book Mapping Profile
             CreateMap<CreateBookModel, Book>();
 
-            #region CreateMap<Book, BookDetailViewModel>()
             CreateMap<Book, BookDetailViewModel>()
             .ForMember(
                 dest => dest.Genre,
@@ -37,9 +38,8 @@ namespace WebApi.Common
                 opt => opt
                 .MapFrom(src => (src.PublishDate.ToString("dd/MM/yyy")))
             );
-            #endregion
 
-            #region CreateMap<Book, BooksViewModel>()
+
             CreateMap<Book, BooksViewModel>()
             .ForMember(
                 dest => dest.Genre,
@@ -58,17 +58,19 @@ namespace WebApi.Common
             );
             #endregion
 
+            #region Genre Mapping Profile
             CreateMap<Genre, GenresViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();
             CreateMap<CreateGenreModel, Genre>();
+            #endregion
 
-
+            #region Author Mapping Profile
             CreateMap<Author, AuthorViewModel>()
-            .ForMember(
-                dest => dest.DateOfBirth,
-                opt => opt
-                .MapFrom(src => src.DateOfBirth.ToShortDateString())
-            );
+           .ForMember(
+               dest => dest.DateOfBirth,
+               opt => opt
+               .MapFrom(src => src.DateOfBirth.ToShortDateString())
+           );
 
             CreateMap<Author, AuthorDetailViewModel>()
             .ForMember(
@@ -80,6 +82,14 @@ namespace WebApi.Common
             );
 
             CreateMap<CreateAuthorModel, Author>();
+            #endregion
+
+            //User Mapping Profile
+            CreateMap<CreateUserModel, User>();
+
+
+
+
         }
 
     }
